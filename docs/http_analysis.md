@@ -226,21 +226,69 @@ Date: Sun, 28 Jun 2026 09:24:58 GMT
 }
 // The update was successful
 
+curl -v "https://httpbin.org/status/302" -H "accept: text/plain"
+// Requesting access to all the information located under the link https://httpbin.org/status/302
+
+< HTTP/1.1 302 FOUND
+//The site is found, but it has moved to another address.
+
+Header: < location: /redirect/1
+// Meaning: The location of the site's new address.
+
+
+curl -v "https://httpbin.org/status/301" -H "accept: text/plain"
+// Requesting access to all the information located under the link https://httpbin.org/status/302
+
+< HTTP/1.1 301 MOVED PERMANENTLY
+//status code 301 - The site is found, but it has moved to a new address permanently.
+
+< Content-Length: 0
+the response size is 0 because you didn't access the correct site yet, so there is no response body
+
+< location: /redirect/1
+//The address of the new site.
+
 
 
 // API Status Codes Summary
-
+Status Code 200:
 // 200 OK: The request was received and a response was returned.
+Status Code 201:
 // 201 Created: The request succeeded and a change was made, usually for POST requests.
-
+Status Code 400:
 // 400 Bad Request: There is a typo, the server does not recognize the request body.
+Status Code 404:
 // 404 Not Found: There is a typo in the URL, it cannot find it or the site does not exist.
-
+Status Code 401:
 // 401 Unauthorized: The site exists, but you don't have access, so you need to send correct credentials.
+Status Code 403:
 // 403 Forbidden: You have access to the site and logged in with a password, but you accessed a place where you don't have permission.
 
 
-// The difference between PUT and PATCH:
+Status Code 301:
+// The website exists, but the address has changed PERMANENTLY, and you can access the new address.
 
+// Status Code 302:
+// The website exists, but the address has changed TEMPORARILY, and you can access the new address.
+
+// Status Code 304:
+// The page has not changed since the last time you requested it, so stay with your previous request (use the saved memory).
+
+// Status Code 307:
+// Same as 302 (temporary), but if I sent a POST request, it forces you to continue with the exact same request on the new website that changed temporarily, which it provided in the location field.
+
+// Status Code 308:
+// Same as 301 (permanent), but if I sent a POST request, it forces you to continue with the exact same request on the new website that moved permanently, which it provided in the location field.
+
+
+The difference between PUT and PATCH:
 // PUT: Updates a resource by replacing the entire resource with the new content. All other things will be deleted if I forgot to update fields.
 // PATCH: Partial update of the fields, everything else stays.
+
+// HTTP vs HTTPS (In My Own Words) ---
+
+// difference between HTTP and HTTPS
+// HTTP - Sending data is done openly to everyone, including passwords, and you can see the data and the passwords.
+
+// HTTPS - HyperText Transfer Protocol Secure:
+// Sending data there is encrypted and secured at a high level, so it is impossible to extract data or passwords, and it is performed using the TLS layer.
