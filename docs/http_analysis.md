@@ -55,3 +55,96 @@ curl.exe "https://httpbin.org/headers" -H "accept: application/json"
 // A tracking ID created by the system
 
 
+### GET Request
+
+**Command executed:**
+```bash
+curl -X POST -v "https://httpbin.org/post" -H "Content-Type: application/json" -d "{\"BatSheva\":\"Cohen\"}"
+// A POST request that inserts the sent data into a JSON format.
+
+"data": "{\"BatSheva\":\"Cohen\"}", 
+// The DATA field will contain the data passed in the request regardless of its type - even if it was corrupted during processing.
+
+"json": {"BatSheva": "Cohen"}, 
+// Contains the data sent in the request in JSON format, as specified under the -H flag, provided that it successfully recognized the format correctly.
+
+
+**Command executed:**
+```bash
+curl -X POST https://jsonplaceholder.typicode.com/posts -H "Content-Type: application/json" -d "{\"title\":\"My First Automation Post\",\"body\":\"Testing Database\",\"userId\":1}"
+// A request to create and save data into the database: "{"title":"My First Automation Post","body":"Testing Database","userId":1}"
+
+< HTTP/1.1 201 Created
+// Status code 201 - The request successfully arrived, was executed, and the new data was saved.
+
+< Location: https://jsonplaceholder.typicode.com/posts/101
+// The URL address where the data was saved.
+< 
+{
+  "title": "My First Automation Post",
+  "body": "Testing Database",
+  "userId": 1,
+  "id": 101
+}
+// The content of the saved data.
+
+curl -i "https://httpbin.org/hidden-basic-auth/bat7cn%gmail.com/bat71234" -H "accept: application/json"
+// An authentication request with a username and password.
+
+HTTP/1.1 400 Bad Request
+// Status code 400 - Something in the request went wrong.
+
+Content-Length: 122
+// Response size in bytes.
+
+<html>
+<head><title>400 Bad Request</title></head>
+<body>
+<center><h1>400 Bad Request</h1></center>
+</body>
+</html>
+// The response from the server - failed to recognize the request, status code 400.
+
+
+curl -i "https://httpbin.org/hidden-basic-auth/bat7cn@gmail.com/bat71234"
+//The request includes the server response headers for data retrieval when attempting to log in with sensitive information.
+
+HTTP/1.1 404 NOT FOUND
+// Status code 404 - The server received the request but the specified URL path does not exist.
+// סטטוס קוד 404 - הבקשה התקבלה אבל השרת לא מצא את הנתיב/הדף המבוקש
+
+Content-Length: 0
+// Response length is 0 bytes because no content is returned for a non-existent path.
+
+
+
+curl -i -u "bat7cn@gmail.com:bat71234" "https://httpbin.org/hidden-basic-auth/bat7cn%40gmail.com/bat71234" -H "accept: application/json"
+// The request includes the server response headers for data retrieval when attempting to log in with sensitive information.
+
+HTTP/1.1 200 OK
+// Status code 200 - The request succeeded because there is permission to send sensitive information using Basic Authentication.~
+
+{
+  "authenticated": true, 
+  "user": "bat7cn@gmail.com"
+}
+// The provided username credentials.
+
+curl -i -u "bat7cn@gmail.com:wrong_password" "https://httpbin.org/hidden-basic-auth/bat7cn%40gmail.com/bat71234"
+// The request includes access to the site using an incorrect password, and the result is 404 for security reasons.
+
+HTTP/1.1 404 NOT FOUND
+// The page was not found, which is for security reasons, even though the site was actually found.
+
+Content-Type: text/html; charset=utf-8
+// The real page is not displayed, so currently it is in HTML format.
+
+Content-Length: 0
+// The response size is 0 because it is empty.
+
+Access-Control-Allow-Origin: *
+// The access to the site is without restrictions, any client can access.
+
+Access-Control-Allow-Credentials: true
+// It is possible to also receive sensitive fields like passwords and it is safe.
+
