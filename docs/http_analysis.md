@@ -2,7 +2,7 @@
 
 **Command executed:**
 ```bash
-curl.exe -v https://httpbin.org/get
+curl -v https://httpbin.org/get
 
 HTTP/1.1 200 OK
 // The request status succeeded and the request I asked for went through successfully.
@@ -148,3 +148,93 @@ Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 // It is possible to also receive sensitive fields like passwords and it is safe.
 
+curl -i -X PUT "https://httpbin.org/put" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"status\": \"active\", \"role\": \"Automation\"}"
+// Update request in JSON format for status: active, role: automation
+HTTP/1.1 200 OK
+// The request status succeeded and the request I asked for went through successfully.
+
+Date:...
+// The date of the response that arrived to me.
+
+Content-Type: application/json
+// The content of the response is in JSON format.
+
+Content-Length: 503
+// The length of the response in bytes.
+
+Connection: keep-alive
+// Keeps the connection currently open between the client and the server so that the answers for the next requests will be faster.
+
+Access-Control-Allow-Origin: *
+// The access to the site is access without restrictions, any client can access.
+
+Access-Control-Allow-Credentials: true
+// It is possible to also receive sensitive fields like passwords and it is safe.
+{
+  "args": {}, 
+  "data": "{\"status\": \"active\", \"role\": \"Automation\"}", 
+  // The data field has been updated with the new changes from the PUT request.
+  
+  "files": {}, 
+  "form": {}, 
+  "headers": {
+    "Accept": "application/json", 
+    "Content-Length": "42", 
+    "Content-Type": "application/json", 
+    "Host": "httpbin.org", 
+    "User-Agent": "curl/8.19.0", 
+    "X-Amzn-Trace-Id": "Root=1-6a40e4a3-57b8f42c7aed761a5a5878bb"
+  }, 
+  "json": {
+    "role": "Automation", 
+    "status": "active"
+  }, 
+  // The update was successful, but previous changes were not saved because this is a demo site that does not persist data.
+
+  
+  "origin": "146.185.58.102", 
+  "url": "https://httpbin.org/put"
+}
+
+curl -i -X PATCH "https://httpbin.org/patch" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"tool\": \"curl\"}"
+// PATCH request to add data; however, since this is a demo site, the changes are not persisted.
+
+HTTP/1.1 200 OK
+// The request status succeeded and the request I asked for went through successfully.
+
+Date: Sun, 28 Jun 2026 09:24:58 GMT
+// The date of the response that arrived to me.
+
+{
+  "args": {}, 
+  "data": "{\"tool\": \"curl\"}", 
+  "files": {}, 
+  "form": {}, 
+  "headers": {
+    "Accept": "application/json", 
+    "Content-Length": "16", 
+    "Content-Type": "application/json", 
+    "Host": "httpbin.org", 
+    "User-Agent": "curl/8.19.0", 
+    "X-Amzn-Trace-Id": "Root=1-6a40e840-3e4a955f5de6097f3939bc12"
+  }, 
+  "json": {
+    "tool": "curl"
+  }, 
+  "origin": "146.185.58.102", 
+  "url": "https://httpbin.org/patch"
+}
+// The update was successful
+
+
+
+// API Status Codes Summary
+
+// 200 OK: The request was received and a response was returned.
+// 201 Created: The request succeeded and a change was made, usually for POST requests.
+
+// 400 Bad Request: There is a typo, the server does not recognize the request body.
+// 404 Not Found: There is a typo in the URL, it cannot find it or the site does not exist.
+
+// 401 Unauthorized: The site exists, but you don't have access, so you need to send correct credentials.
+// 403 Forbidden: You have access to the site and logged in with a password, but you accessed a place where you don't have permission.
