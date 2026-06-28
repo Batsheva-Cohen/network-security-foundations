@@ -238,3 +238,9 @@ Date: Sun, 28 Jun 2026 09:24:58 GMT
 
 // 401 Unauthorized: The site exists, but you don't have access, so you need to send correct credentials.
 // 403 Forbidden: You have access to the site and logged in with a password, but you accessed a place where you don't have permission.
+
+
+// The difference between PUT and PATCH:
+
+// PUT: Updates a resource by replacing the entire resource with the new content. All other things will be deleted if I forgot to update fields.
+// PATCH: Partial update of the fields, everything else stays.
