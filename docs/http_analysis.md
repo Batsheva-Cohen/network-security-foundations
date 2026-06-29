@@ -285,7 +285,7 @@ The difference between PUT and PATCH:
 // PUT: Updates a resource by replacing the entire resource with the new content. All other things will be deleted if I forgot to update fields.
 // PATCH: Partial update of the fields, everything else stays.
 
-// HTTP vs HTTPS (In My Own Words) ---
+// HTTP vs HTTPS
 
 // difference between HTTP and HTTPS
 // HTTP - Sending data is done openly to everyone, including passwords, and you can see the data and the passwords.
