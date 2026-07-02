@@ -1,8 +1,19 @@
 import base64
-
+import os
 from cryptography.fernet import Fernet
-
+from cryptography.hazmat.primitives.kdf.argon2 import Argon2id
+password = b"mypassword"
 message = "sensitive value"
+salt = os.urandom(16)
+kdf = Argon2id(
+    salt=salt,
+    length=32,
+    iterations=1,
+    lanes=4,
+    memory_cost=2**21
+)
+key_password = base64.urlsafe_b64encode(kdf.derive(password))
+print("hash password: ", key_password )
 
 # הצפנה סימטרית: דורשת מפתח, והיא הפיכה רק עם אותו מפתח.
 key = Fernet.generate_key()
@@ -17,4 +28,6 @@ print("decrypted:", decrypted)
 encoded = base64.b64encode(message.encode()).decode()
 print("base64 encoded:", encoded)
 print("base64 decoded (ללא מפתח):", base64.b64decode(encoded).decode())
+
+
 
