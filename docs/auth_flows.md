@@ -41,3 +41,24 @@ This is the entity they are talking about, and its value is usually the unique i
 
 **Why You Shouldn't Put Secret Information in the JWT Payload**
 The Payload is encoded so that it can be transferred over the network and it is not encrypted, therefore all of its information can be easily retrieved by a simple decode operation. On the other hand, the Signature we talked about is only meant to check if the content arrived whole and that it is not broken, and therefore it still does not encrypt the content and it can be exposed in a moment.
+
+As can be seen in the script – the creation of the server's secret key using the Payload, SECRET, and the HS256 algorithm, and then we receive the token which is a long string divided into 3 parts separated by a dot. The code verifies that the token is indeed divided into 3 parts separated by a dot and that they are all encoded in Base64.
+
+The decoding function basically performs the decode operation – it translates the encoded text using a simple mathematical action without using the secret key at all, proving that the Payload is completely exposed to anyone and is not encrypted.
+
+According to the line:
+*print("payload:", json.loads(b64url_decode(payload_b64)))*
+I see that I did not use the secret key and I managed to receive the text {"sub": "dana", "role": "qa"} by using a decoding function.
+and the line:
+*print("payload:", json.loads(b64url_decode(payload_b64)))*
+I see that I did not use the secret key and I managed to receive the text {'sub': 'dana', 'role': 'qa', 'exp': 9999999999} by using a decoding function.
+
+**session vs token**
+The difference between a session and a token is that a token works on a Stateless state and the session works on a Stateful state. If I use a distributed system that has a number of computers communicating with each other in a Stateful manner, then the password (session data) is saved in the database of one of the computers and the second one will no longer recognize it. Letting everyone manage a database for this, where everyone saves the exact same data, is wasteful, inefficient, and very expensive. Therefore, the token is excellent for a distributed system because the token is saved with the client and the server will validate it using the secret key it holds, and the key is not expensive to store on all the computers.
+
+**Authenticated Endpoint Test Scenarios**
+Request without a token – Status Code 401
+Expired token – Status Code 401
+Fake/Invalid token – Status Code 401
+Valid token but insufficient permissions – Status Code 403
+
