@@ -18,6 +18,8 @@ print("token:", token)
 
 # JWT בנוי משלושה חלקים מופרדים בנקודה.
 parts = token.split(".")
+if len(parts) != 3:
+    raise ValueError("Invalid JWT structure: A JWT must consist of exactly 3 parts separated by dots.")
 print("מספר חלקים:", len(parts), "(header.payload.signature)")
 header_b64, payload_b64, _signature_b64 = parts
 
