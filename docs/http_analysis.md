@@ -5,7 +5,7 @@
 curl -v https://httpbin.org/get
 
 HTTP/1.1 200 OK
-// The request status succeeded and the request I asked for went through successfully.
+# The request status succeeded and the request I asked for went through successfully.
 
 Date:...
 // The date of the response that arrived to me.
