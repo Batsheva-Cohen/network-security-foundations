@@ -1,12 +1,13 @@
 """פירוק JWT לרכיביו, והדגמה שה-payload מקודד base64 ולא מוצפן."""
-
 import base64
 import json
-
 import jwt
+import os
+from dotenv import load_dotenv
 
-SECRET = "demo-secret-key-at-least-32-bytes-long!!"
+load_dotenv()
 
+SECRET = os.environ.get("MY_SECRET_KEY")
 # במערכת אמת השרת מנפיק את הטוקן לאחר התחברות מוצלחת. כאן יוצרים אותו מקומית.
 token = jwt.encode(
     {"sub": "dana", "role": "qa", "exp": 9999999999},
@@ -39,3 +40,4 @@ try:
     print("שגיאה: טוקן מזויף התקבל")
 except jwt.InvalidSignatureError:
     print("מפתח שגוי -> אימות נכשל, כצפוי")
+

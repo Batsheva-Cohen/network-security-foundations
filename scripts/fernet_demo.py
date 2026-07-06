@@ -2,6 +2,7 @@ import base64
 import os
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives.kdf.argon2 import Argon2id
+
 password = b"mypassword"
 message = "sensitive value"
 salt = os.urandom(16)
