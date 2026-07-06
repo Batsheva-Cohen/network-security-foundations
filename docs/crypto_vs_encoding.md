@@ -1,12 +1,13 @@
 
-**Encoding:**
-Encoding is taking information and converting it into a certain format so that additional systems can receive and understand it, for example, transferring data between different communication protocols; it is possible that the information will need to pass in a certain format so that it can pass without problems.
+*Encoding:*
+Data conversion by a built-in and pre-known algorithm from one system to another, so that they can communicate with each other and transfer information. This process is reversible, and at any moment the original text can be restored without needing a secret key for decryption. This is done using a DECODE process that returns the text to its initial state.
 
-**Encryption:**
-Encryption is taking information, encrypting it, it will look like text that is impossible to understand, and it will be possible to decrypt back to the original text only with the help of the key; whoever holds the key will be able to decrypt again, they use this when they want to transfer information from one to another in an encrypted way so that not everyone can take the information, like transferring credit card data.
+*Encryption:*
+Data conversion by a built-in and pre-known algorithm, such that its decryption can only be done using a secret key kept only by authorized parties, with which the code can be decrypted back. This protects data privacy during network data transmission; only whoever holds the key will be able to access the original content.
 
-**Hashing:**
-Hashing is like encryption but impossible to decrypt, the original text disappears and it is impossible to restore after the hashing, it is a scrambling of the text into text that looks like gibberish, they use this for passwords for example when I want to save the password by encryption but I have no need to restore it... I authenticate the user once with their password and that's it, the original password disappears and it is impossible to steal it.
+*Hashing:*
+This is a one-to-one function applied to the input that scrambles the information into a fixed-length text, which can be verified by running the same algorithm and comparing the outputs in order to identify the authorization.
+
 
 **Why Base64 is not a security measure:**
 For it to be a security measure, I need it to be confidential, and only someone with authorization should be able to decrypt it. If I took information and performed Base64 on it, I turned this information into a format that can be understood between two parties that communicate with each other and transfer it to one another. Anyone can come and decode this encoding; I do not need a key, and therefore it is not confidential. Hence, it is impossible to use this for security purposes because it is not secured in this manner.
