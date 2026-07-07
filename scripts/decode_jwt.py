@@ -9,7 +9,7 @@ load_dotenv()
 
 #SECRET = os.environ.get("MY_SECRET_KEY")
 # במערכת אמת השרת מנפיק את הטוקן לאחר התחברות מוצלחת. כאן יוצרים אותו מקומית.
-def creat_token(SECRET):
+def create_token(SECRET):
     token = jwt.encode(
     {"sub": "dana", "role": "qa", "exp": 9999999999},
     SECRET,
@@ -17,7 +17,7 @@ def creat_token(SECRET):
     return token
 
 # JWT בנוי משלושה חלקים מופרדים בנקודה.
-token = creat_token(os.environ.get("MY_SECRET_KEY"))
+token = create_token(os.environ.get("MY_SECRET_KEY"))
 parts = token.split(".")
 if len(parts) != 3:
     raise ValueError("Invalid JWT structure: A JWT must consist of exactly 3 parts separated by dots.")
