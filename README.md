@@ -3,7 +3,7 @@ This project represents Part 1 of the complete Automation Development training p
 
 The knowledge and tools acquired throughout this phase (such as curl, openssl, dig, and Python) form the essential infrastructure required for root cause analysis (RCA), traffic inspection, and complex API testing in the subsequent stages of the training path.
 
-# Directory structur
+## Project Structure
 network-security-foundations/
   scripts/
     decode_jwt.py
@@ -30,21 +30,18 @@ curl - For sending and analyzing HTTP/HTTPS requests
 openssl - For inspecting SSL/TLS certificates and cryptographic operations
 dig - For querying and analyzing DNS records
 
-# Install dependencies and synchronize the environment
+## Installation
 uv sync
-
-# Verifying Tool Availability
 curl --version
 openssl version
 dig -v  # Or nslookup on Windows
 uv run python -c "import jwt, cryptography, requests; print('python deps ok')"
 
-# Running the Python Scripts
+## Run
 uv run python scripts/fernet_demo.py
-
-# Running the JWT Decoding and Verification Demo
 uv run python scripts/decode_jwt.py
 
+## Interview Questions
 1.What is the difference between HTTP and HTTPS, and what does TLS add?
 HTTP represents unsecure web browsing, where anyone can see everything sent in the request. In contrast, HTTPS is secure because it integrates the TLS protocol, which protects the data by encrypting it so that it appears as unreadable characters. It uses asymmetric encryption with a public and private key during the Handshake phase, and later, once it authenticates the communication with the server, it proceeds with symmetric encryption, which is faster. It also goes through the authentication stage to check the certificate, ensuring that it is indeed the real website and that its validity is good.
 

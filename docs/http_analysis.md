@@ -23,7 +23,7 @@ Access-Control-Allow-Origin: *
 // The access to the site is access without restrictions, any client can access.
 
 Access-Control-Allow-Credentials: true
-// It is possible to also receive sensitive fields like passwords and it is safe.
+header merely indicates that the browser is permitted to send or receive credentials in cross-origin requests when the server allows it. It does not mean the request is 'safe', nor is it related to password storage.
 
 **Command executed:**
 ```bash
@@ -147,6 +147,8 @@ Access-Control-Allow-Origin: *
 
 Access-Control-Allow-Credentials: true
 // It is possible to also receive sensitive fields like passwords and it is safe.
+Access-Control-Allow-Credentials: true
+header merely indicates that the browser is permitted to send or receive credentials in cross-origin requests when the server allows it. It does not mean the request is 'safe', nor is it related to password storage.
 
 curl -i -X PUT "https://httpbin.org/put" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"status\": \"active\", \"role\": \"Automation\"}"
 // Update request in JSON format for status: active, role: automation
@@ -169,7 +171,8 @@ Access-Control-Allow-Origin: *
 // The access to the site is access without restrictions, any client can access.
 
 Access-Control-Allow-Credentials: true
-// It is possible to also receive sensitive fields like passwords and it is safe.
+header merely indicates that the browser is permitted to send or receive credentials in cross-origin requests when the server allows it. It does not mean the request is 'safe', nor is it related to password storage.
+
 {
   "args": {}, 
   "data": "{\"status\": \"active\", \"role\": \"Automation\"}", 
