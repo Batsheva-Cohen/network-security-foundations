@@ -44,8 +44,23 @@ Received a 644-byte response from the TLD server, containing the available autho
 ;; Received 55 bytes from 216.239.34.10#53(ns2.google.com) in 114 ms
 The authoritative Name Server (NS) that finally returned the actual IP address is ns2.google.com.
 
-What I learn from NS and MX
-What I learn from this is that every website contains sub-domains (or sub-addresses) managed by different servers to provide flexibility. This ensures that even if a website address is formulated loosely or approximately, the system understands the intent and redirects the user to their specific request. It allows dividing each website into categories to maintain organization and prevent overloads, enabling a large volume of users to browse a specific site simultaneously without it crashing. Furthermore, even if a server does crash, there are backup servers ready to take its place.
+### command
+dig google.com MX
+
+;; ANSWER SECTION:
+google.com.             300     IN      MX      10 smtp.google.com.
+
+;; Query time: 69 msec
+;; SERVER: 192.168.1.1#53(192.168.1.1) (UDP)
+;; WHEN: Wed Jul 08 10:32:52 ;; MSG SIZE  rcvd: 60
+
+The MX record specifies the mail servers responsible for receiving email messages on behalf of the domain. 
+What I learn from this is that when someone sends an email to `user@google.com`, the sending mail server performs a DNS lookup for the MX record of `google.com` to find the exact destination server (`smtp.google.com.`) and the priority number (10 - where a lower number means higher priority)
+
+
+### What I learn from NS and MX
+1. **Separation of Services:** DNS allows us to route traffic to different physical servers based on the *type* of request. Regular web traffic (HTTP/HTTPS) goes to the IP specified in the **A record**, while email traffic goes to the mail server specified in the **MX record**. They do not have to sit on the same machine!
+2. **High Availability and Redundancy:** By defining multiple **NS records** (like ns1, ns2, ns3), the domain ensures that its "address book" is always available. Even if one DNS server undergoes maintenance or crashes, backup servers take over instantly, preventing a global outage of the service.
 
 ### command -
 dig www.terminalx.com
