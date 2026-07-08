@@ -13,8 +13,8 @@ kdf = Argon2id(
     lanes=4,
     memory_cost=2**21
 )
-key_password = base64.urlsafe_b64encode(kdf.derive(password))
-print("hash password: ", key_password )
+derived_key = base64.urlsafe_b64encode(kdf.derive(password))
+print("derived key:", derived_key)
 
 # הצפנה סימטרית: דורשת מפתח, והיא הפיכה רק עם אותו מפתח.
 key = Fernet.generate_key()
