@@ -118,7 +118,7 @@ Content-Length: 0
 
 
 
-curl -i -u "bat7cn@gmail.com:bat71234" "https://httpbin.org/hidden-basic-auth/bat7cn%40gmail.com/bat71234" -H "accept: application/json"
+curl -i -u "user@example.com:<demo-password>"  "https://httpbin.org/hidden-basic-auth/user%40example.com/<demo-password>" -H "accept: application/json"
 // The request includes the server response headers for data retrieval when attempting to log in with sensitive information.
 
 HTTP/1.1 200 OK
