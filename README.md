@@ -17,13 +17,14 @@ network-security-foundations/
     auth_flows.md
   README.md
   .gitignore
-  .env
+  .env.example
   pyproject.toml
   main.py
   conftest.py
 
 
-rerequisites & Tooling
+## Prerequisites & Tooling
+Python 3.13 via uv, curl, openssl, and dig or nslookup on Windows.
 The project is executed and run locally using the following tools:
 Python 3.13 (Environment and dependency management handled via uv)
 curl - For sending and analyzing HTTP/HTTPS requests

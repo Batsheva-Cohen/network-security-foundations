@@ -23,7 +23,7 @@ Access-Control-Allow-Origin: *
 // The access to the site is access without restrictions, any client can access.
 
 Access-Control-Allow-Credentials: true
-header merely indicates that the browser is permitted to send or receive credentials in cross-origin requests when the server allows it. It does not mean the request is 'safe', nor is it related to password storage.
+Allows the browser to include credentials in cross-origin CORS requests; this must be done with caution, as it enables other sites to perform actions on behalf of the logged-in user
 
 **Command executed:**
 ```bash
@@ -143,7 +143,7 @@ Content-Length: 0
 // The response size is 0 because it is empty.
 
 Access-Control-Allow-Origin: *
-// The access to the site is without restrictions, any client can access.
+Allows the browser to include credentials in cross-origin CORS requests; this must be done with caution, as it enables other sites to perform actions on behalf of the logged-in user
 
 Access-Control-Allow-Credentials: true
 // It is possible to also receive sensitive fields like passwords and it is safe.
@@ -168,7 +168,7 @@ Connection: keep-alive
 // Keeps the connection currently open between the client and the server so that the answers for the next requests will be faster.
 
 Access-Control-Allow-Origin: *
-// The access to the site is access without restrictions, any client can access.
+Allows the browser to include credentials in cross-origin CORS requests; this must be done with caution, as it enables other sites to perform actions on behalf of the logged-in user
 
 Access-Control-Allow-Credentials: true
 header merely indicates that the browser is permitted to send or receive credentials in cross-origin requests when the server allows it. It does not mean the request is 'safe', nor is it related to password storage.
