@@ -10,7 +10,8 @@ def main() -> None:
     if not secret_key:
         raise ValueError("MY_SECRET_KEY is missing")
     token = decode_jwt.create_token(secret_key)
-    print("MY TOKEN IS: {token}")
+    print(f"MY TOKEN IS: {token}")
+
     try:
         header, payload = decode_jwt.decode_token_parts(token)
         print("Decoded Content:")

@@ -16,7 +16,7 @@ def b64url_decode(segment: str) -> bytes:
     padding = "=" * (-len(segment) % 4)
     return base64.urlsafe_b64decode(segment + padding)
 
-def decode_token_parts(token: str) -> tuple[dict, dict]:
+def decode_token_parts(token: str) -> bytes:
     parts = token.split(".")
     if len(parts) != 3:
         raise ValueError("Invalid JWT structure: A JWT must consist of exactly 3 parts separated by dots.")
