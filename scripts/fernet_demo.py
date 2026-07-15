@@ -3,7 +3,7 @@ import os
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives.kdf.argon2 import Argon2id
 
-password = b"mypassword"
+password = b"<demo_password>"
 message = "sensitive value"
 salt = os.urandom(16)
 kdf = Argon2id(
